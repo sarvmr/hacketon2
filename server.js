@@ -22,9 +22,9 @@ const server = http.createServer((req, res) => {
     req.on('end', () => {
       try {
         const { username, password } = JSON.parse(body); // Parse the JSON body
-        if (username === 'admin' && password === '111') {
+        if (username === 'admin' && password === '1@2#3') {
           res.writeHead(200, {
-            'Set-Cookie': 'token=123; HttpOnly; Max-Age=6000; SameSite=None; Secure ',
+            'Set-Cookie': 'token=123; HttpOnly; Max-Age=60; SameSite=None; Secure ',
             'Content-Type': 'application/json'
           });
           res.end(JSON.stringify({ message: 'Logged in successfully' }));
@@ -43,7 +43,7 @@ const server = http.createServer((req, res) => {
     const cookie = req.headers.cookie;
     if (cookie && cookie.includes('token=123')) {
       res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ message: 'You are logged in, here is something.' }));
+      res.end(JSON.stringify({ message: 'You are logged in, treasure:DIAMOND.' }));
     } else {
       res.writeHead(401, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ message: 'Unauthorized: You are not logged in.' }));
