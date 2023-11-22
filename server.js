@@ -31,6 +31,7 @@ const server = http.createServer((req, res) => {
         const { username, password } = JSON.parse(body); // Parse the JSON body
         if (username === 'admin' && password === '1@2#3') {
           const token = jwt.sign({ username }, secretKey, { expiresIn: '1m' });
+          console.log('Token:', token);
           res.writeHead(200, {
             'Set-Cookie': `token=${token}; HttpOnly; Max-Age=60; SameSite=None; Secure`,
             'Content-Type': 'application/json',
